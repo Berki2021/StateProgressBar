@@ -12,7 +12,7 @@ import com.kofigyan.stateprogressbar.StateProgressBar;
 
 public abstract class UsageBaseActivity extends Activity implements View.OnClickListener {
 
-    protected String[] descriptionData = {"Details", "Pricing", "Amenities", "Status"};
+    protected final String[] descriptionData = {"Details", "Pricing", "Amenities", "Status"};
     protected Button nextBtn;
     protected Button backBtn;
     protected StateProgressBar stateprogressbar;

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.kofigyan.stateprogressbarsample.not_stateprogressbar.adapter.StatesListAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static com.kofigyan.stateprogressbarsample.not_stateprogressbar.utils.Constants.DESCENDING;
@@ -17,7 +18,6 @@ import static com.kofigyan.stateprogressbarsample.not_stateprogressbar.utils.Con
 
 public class StatesListActivity extends ListBaseActivity {
 
-    private boolean isDescending;
     private boolean isDescendingAscendingOptions;
 
     @Override
@@ -26,7 +26,7 @@ public class StatesListActivity extends ListBaseActivity {
 
         setContentView(R.layout.activity_states_list);
 
-        isDescending = getIntent().getBooleanExtra(DESCENDING, false);
+        boolean isDescending = getIntent().getBooleanExtra(DESCENDING, false);
 
         isDescendingAscendingOptions = getIntent().getBooleanExtra(IS_DESCENDING_ASCENDING_OPTIONS, false );
 
@@ -48,9 +48,7 @@ public class StatesListActivity extends ListBaseActivity {
 
         String[] statesItems = res.getStringArray(arrayValues);
 
-        for (int i = 0; i < statesItems.length; i++) {
-            items.add(statesItems[i]);
-        }
+        Collections.addAll(items, statesItems);
 
         return items;
     }

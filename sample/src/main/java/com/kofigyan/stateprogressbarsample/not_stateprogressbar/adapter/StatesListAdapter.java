@@ -2,7 +2,6 @@ package com.kofigyan.stateprogressbarsample.not_stateprogressbar.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,9 @@ import java.util.List;
 
 import static com.kofigyan.stateprogressbarsample.not_stateprogressbar.utils.Constants.ASCENDING;
 import static com.kofigyan.stateprogressbarsample.not_stateprogressbar.utils.Constants.DESCENDING;
-import static com.kofigyan.stateprogressbarsample.not_stateprogressbar.utils.Constants.IS_DESCENDING_ASCENDING_OPTIONS;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Kofi Gyan on 7/12/2016.
@@ -23,8 +24,8 @@ import static com.kofigyan.stateprogressbarsample.not_stateprogressbar.utils.Con
 
 public class StatesListAdapter extends RecyclerView.Adapter<StatesListAdapter.ItemViewHolder> {
 
-    private List<String> items;
-    private Context context;
+    private final List<String> items;
+    private final Context context;
     private boolean isDescending;
 
     public StatesListAdapter(List<String> items, Context context) {
@@ -40,8 +41,8 @@ public class StatesListAdapter extends RecyclerView.Adapter<StatesListAdapter.It
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView title;
-        public ItemClickListener listener;
+        final TextView title;
+        public final ItemClickListener listener;
 
         ItemViewHolder(View itemView, ItemClickListener listener) {
             super(itemView);
@@ -66,33 +67,30 @@ public class StatesListAdapter extends RecyclerView.Adapter<StatesListAdapter.It
         return items.size();
     }
 
+    @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_states_list, viewGroup, false);
-        ItemViewHolder ivh = new ItemViewHolder(v, new ItemViewHolder.ItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
+        return new ItemViewHolder(v, (view, position) -> {
 
-                if (items.get(position).equals(ASCENDING)) {
-                    Intent intent = new Intent(context, Utils.selectActivity(position, Utils.allActivities));
-                    intent.putExtra(DESCENDING, false);
-                    context.startActivity(intent);
+            if (items.get(position).equals(ASCENDING)) {
+                Intent intent = new Intent(context, Utils.selectActivity(position, Utils.allActivities));
+                intent.putExtra(DESCENDING, false);
+                context.startActivity(intent);
 
 
-                } else if (items.get(position).equals(DESCENDING)) {
-                    Intent intent = new Intent(context, Utils.selectActivity(position - 1, Utils.allActivities));
-                    intent.putExtra(DESCENDING, true);
-                    context.startActivity(intent);
+            } else if (items.get(position).equals(DESCENDING)) {
+                Intent intent = new Intent(context, Utils.selectActivity(position - 1, Utils.allActivities));
+                intent.putExtra(DESCENDING, true);
+                context.startActivity(intent);
 
-                } else {
+            } else {
 
-                    Intent intent = new Intent(context, Utils.selectActivity(position, isDescending ? Utils.basicDescendingActivities : Utils.basicActivities));
-                    context.startActivity(intent);
-                }
-
+                Intent intent = new Intent(context, Utils.selectActivity(position, isDescending ? Utils.basicDescendingActivities : Utils.basicActivities));
+                context.startActivity(intent);
             }
+
         });
-        return ivh;
     }
 
     @Override
@@ -101,7 +99,7 @@ public class StatesListAdapter extends RecyclerView.Adapter<StatesListAdapter.It
     }
 
     @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
 

@@ -8,8 +8,6 @@ public class StateItemNumber extends BaseItem {
 
     private int number;
 
-    // private Typeface typeface;
-
     public static abstract class Builder<T extends Builder<T>> extends BaseItem.Builder<T> {
         private int number;
 

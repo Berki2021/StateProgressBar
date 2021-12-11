@@ -2,7 +2,6 @@ package com.kofigyan.stateprogressbarsample.not_stateprogressbar.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +15,17 @@ import java.util.List;
 
 import static com.kofigyan.stateprogressbarsample.not_stateprogressbar.utils.Constants.IS_DESCENDING_ASCENDING_OPTIONS;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 /**
  * Created by Kofi Gyan on 7/12/2016.
  */
 
 public class ApiFeatureAdapter extends RecyclerView.Adapter<ApiFeatureAdapter.ItemViewHolder> {
 
-    private List<ApiFeature> apiFeatures;
-    private Context context;
+    private final List<ApiFeature> apiFeatures;
+    private final Context context;
 
     public ApiFeatureAdapter(List<ApiFeature> apiFeatures, Context context) {
         this.apiFeatures = apiFeatures;
@@ -32,9 +34,9 @@ public class ApiFeatureAdapter extends RecyclerView.Adapter<ApiFeatureAdapter.It
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView title;
-        TextView description;
-        public ItemClickListener listener;
+        final TextView title;
+        final TextView description;
+        public final ItemClickListener listener;
 
         ItemViewHolder(View itemView, ItemClickListener listener) {
             super(itemView);
@@ -60,20 +62,15 @@ public class ApiFeatureAdapter extends RecyclerView.Adapter<ApiFeatureAdapter.It
         return apiFeatures.size();
     }
 
+    @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_api_feature, viewGroup, false);
-        ItemViewHolder ivh = new ItemViewHolder(v, new ItemViewHolder.ItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-
-                Intent intent = new Intent(context, Utils.selectActivity(position, Utils.allActivities));
-                intent.putExtra(IS_DESCENDING_ASCENDING_OPTIONS, true);
-                context.startActivity(intent);
-
-            }
+        return new ItemViewHolder(v, (view, position) -> {
+            Intent intent = new Intent(context, Utils.selectActivity(position, Utils.allActivities));
+            intent.putExtra(IS_DESCENDING_ASCENDING_OPTIONS, true);
+            context.startActivity(intent);
         });
-        return ivh;
     }
 
     @Override
@@ -83,7 +80,7 @@ public class ApiFeatureAdapter extends RecyclerView.Adapter<ApiFeatureAdapter.It
     }
 
     @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
 

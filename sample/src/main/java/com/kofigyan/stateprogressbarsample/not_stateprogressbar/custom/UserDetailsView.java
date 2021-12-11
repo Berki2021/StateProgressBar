@@ -82,7 +82,7 @@ public class UserDetailsView extends RelativeLayout implements View.OnClickListe
     }
 
     public interface OnUserDetailClickListener {
-        public void onUserDetailClickListener(View v);
+        void onUserDetailClickListener(View v);
     }
 
 

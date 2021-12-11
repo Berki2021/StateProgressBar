@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:orientation="vertical">
 
@@ -17,7 +17,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:headerSrc="@mipmap/ic_availability"
-            app:headerTitle="Property Availability"></com.kofigyan.stateprogressbarsample.not_stateprogressbar.custom.ContentHeaderView>
+            app:headerTitle="Property Availability">
+
+        </com.kofigyan.stateprogressbarsample.not_stateprogressbar.custom.ContentHeaderView>
 
 
         <RelativeLayout

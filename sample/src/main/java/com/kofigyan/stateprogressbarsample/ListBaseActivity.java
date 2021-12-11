@@ -3,11 +3,12 @@ package com.kofigyan.stateprogressbarsample;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.kofigyan.stateprogressbarsample.not_stateprogressbar.custom.DividerItemDecoration;
 
@@ -47,13 +48,12 @@ public abstract class ListBaseActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        Intent i = null;
+        Intent i;
 
         switch (item.getItemId()) {
             case R.id.viewGithub:
                 i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse("https://github.com/kofigyan/StateProgressBar"));
+                i.setData(Uri.parse("https://github.com/Berki2021/StateProgressBar"));
                 startActivity(i);
                 break;
             case R.id.feedback:
@@ -65,9 +65,6 @@ public abstract class ListBaseActivity extends Activity {
                 break;
 
         }
-
         return true;
     }
-
-
 }

@@ -24,16 +24,12 @@ import com.kofigyan.stateprogressbarsample.UsageDetailsActivity;
 
 public class Utils {
 
-    public static Class[] basicActivities = {BasicFiveStatesActivity.class,BasicFourStatesActivity.class, BasicThreeStatesActivity.class, BasicTwoStatesActivity.class};
-    public static Class[] basicDescendingActivities = {BasicFiveDescendingStatesActivity.class,BasicFourDescendingStatesActivity.class, BasicThreeDescendingStatesActivity.class, BasicTwoDescendingStatesActivity.class};
+    public static final Class[] basicActivities = {BasicFiveStatesActivity.class,BasicFourStatesActivity.class, BasicThreeStatesActivity.class, BasicTwoStatesActivity.class};
+    public static final Class[] basicDescendingActivities = {BasicFiveDescendingStatesActivity.class,BasicFourDescendingStatesActivity.class, BasicThreeDescendingStatesActivity.class, BasicTwoDescendingStatesActivity.class};
 
-    public static Class[] allActivities = {StatesListActivity.class, CheckFourStatesActivity.class, AllStatesCompletedActivity.class, AnimationFourStatesActivity.class, DescriptionFourStatesActivity.class, ChangingStatesSizeActivity.class, ColoringStatesActivity.class, UsageDetailsActivity.class};
-
+    public static final Class[] allActivities = {StatesListActivity.class, CheckFourStatesActivity.class, AllStatesCompletedActivity.class, AnimationFourStatesActivity.class, DescriptionFourStatesActivity.class, ChangingStatesSizeActivity.class, ColoringStatesActivity.class, UsageDetailsActivity.class};
 
     public static Class selectActivity(int position, Class[] activities) {
-        Class activity = activities[position];
-        return activity;
+        return activities[position];
     }
-
-
 }
